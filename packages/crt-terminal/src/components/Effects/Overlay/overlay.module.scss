@@ -1,0 +1,37 @@
+@import 'src/styles/variables.scss';
+@import 'src/styles/animations.scss';
+
+.overlay {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.scanner {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: $scanner-size;
+  opacity: 0.05;
+  background: $scanner-gradient;
+  animation: scanner 8s linear infinite forwards;
+}
+
+.pixels {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  background: $pixel-lines-gradient, $rgb-noise-gradient;
+  background-position-y: size(0.25);
+  background-size: 100% size(0.75), size(1) 100%;
+}

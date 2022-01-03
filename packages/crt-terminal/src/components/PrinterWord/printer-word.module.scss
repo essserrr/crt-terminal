@@ -1,0 +1,35 @@
+@import 'src/styles/variables.scss';
+
+.commandWord {
+  display: inline-block;
+}
+
+.textWord {
+  display: inline-block;
+}
+
+.buttonWord {
+  @include terminal-text;
+
+  margin: 0;
+  padding: 0 5px;
+  display: inline-block;
+  background-color: transparent;
+  border: 1px solid $main-color;
+  cursor: pointer;
+
+  &:hover {
+    color: $secondary-color;
+    background-color: $main-color;
+  }
+}
+
+.anchorWord {
+  @include terminal-text;
+
+  display: inline-block;
+
+  &:hover {
+    color: lighten($main-color, 30%);
+  }
+}

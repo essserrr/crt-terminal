@@ -1,0 +1,8 @@
+@import 'src/styles/animations.scss';
+
+.textEffects {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  animation: pulse-text 5s linear infinite;
+}

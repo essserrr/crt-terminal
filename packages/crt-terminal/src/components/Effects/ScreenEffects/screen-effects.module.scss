@@ -1,0 +1,7 @@
+@import 'src/styles/animations.scss';
+
+.screenEffects {
+  width: 100%;
+  height: 100%;
+  animation: shiver-screen 10s linear infinite;
+}

@@ -1,0 +1,13 @@
+@import 'src/styles/variables.scss';
+@import 'src/styles/animations.scss';
+
+.character {
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.characterSelected {
+  color: $cursor-contrast-color;
+  background-color: $cursor-color;
+  animation: blink-character 1s steps(1, end) infinite;
+}

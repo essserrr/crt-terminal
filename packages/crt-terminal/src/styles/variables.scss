@@ -1,0 +1,42 @@
+@import './functions.scss';
+
+$font-family: 'Courier New', courier, monospace;
+$font-size: rem(14);
+
+$main-color: #d0fc7e;
+$secondary-color: #111010;
+$light-color: #fffcfc;
+
+$cursor-color: $main-color;
+$cursor-contrast-color: $secondary-color;
+
+$terminal-text-shadow: 0 0 size(4) $main-color, 0 0 size(6) $main-color;
+$terminal-round-gradient: radial-gradient(50% 50% at 50% 50%, #354228 0, #0f140a 100%);
+$terminal-shadow: 0 0 size(10) #252925, inset 0 0 size(7) size(5) #000;
+
+$scanner-size: size(6);
+$scanner-gradient: linear-gradient(
+  180deg,
+  transparent 0,
+  $light-color 85%,
+  $main-color 0,
+  transparent
+);
+
+$rgb-noise-r: rgb(255 0 0 / 5.5%);
+$rgb-noise-g: rgb(0 255 0 / 3%);
+$rgb-noise-b: rgb(0 0 255 / 5.5%);
+$rgb-noise-gradient: linear-gradient(90deg, $rgb-noise-r, $rgb-noise-g, $rgb-noise-b);
+
+$pixel-line-color: rgb(0 0 0 / 21%);
+$pixel-lines-gradient: linear-gradient(transparent 50%, $pixel-line-color 0);
+
+$command-line-padding: size(5) size(5) size(5) size(5);
+
+@mixin terminal-text {
+  font-family: $font-family;
+  font-size: $font-size;
+  line-height: 1.5;
+  text-shadow: $terminal-text-shadow;
+  color: $main-color;
+}

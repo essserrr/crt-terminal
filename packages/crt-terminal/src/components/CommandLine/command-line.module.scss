@@ -1,0 +1,23 @@
+@import 'src/styles/variables.scss';
+
+.commandLine {
+  padding: $command-line-padding;
+}
+
+.inputWrap {
+  display: inline-block;
+}
+
+.input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+.inputString {
+  display: inline-block;
+  overflow: visible;
+  white-space: normal;
+  word-break: break-all;
+}

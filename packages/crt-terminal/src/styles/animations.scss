@@ -1,0 +1,52 @@
+@import './variables.scss';
+@import './functions.scss';
+
+@keyframes blink-character {
+  50% {
+    color: $cursor-color;
+    background-color: transparent;
+  }
+}
+
+@keyframes scanner {
+  0% {
+    top: 0%;
+  }
+
+  50% {
+    top: 100%;
+  }
+
+  100% {
+    top: 100%;
+  }
+}
+
+@keyframes pulse-text {
+  50% {
+    text-shadow: 0 0 size(4) lighten($main-color, 50%), 0 0 size(5.5) lighten($main-color, 80%);
+    color: adjust-hue($main-color, 5deg);
+  }
+}
+
+@keyframes shiver-screen {
+  0% {
+    transform: skewX(0deg);
+  }
+
+  4% {
+    transform: skewX(0.7deg) scale(1.0001);
+  }
+
+  8% {
+    transform: skewX(0.2deg) skewY(-0.1deg);
+  }
+
+  16% {
+    transform: skewX(0.2deg);
+  }
+
+  50% {
+    transform: skewX(0.2deg);
+  }
+}

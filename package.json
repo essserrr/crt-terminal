@@ -1,0 +1,63 @@
+{
+  "name": "crt-terminal-demo",
+  "version": "1.0.0",
+  "description": "Oldschool CRT terminal for web",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/essserrr/crt-terminal.git"
+  },
+  "keywords": [
+    "crt",
+    "terminal",
+    "console",
+    "react",
+    "typescript"
+  ],
+  "author": "Dmitriy Lipin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/essserrr/crt-terminal/issues"
+  },
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "stylelint": "turbo run  stylelint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+  },
+  "devDependencies": {
+    "prettier": "^2.5.1",
+    "turbo": "latest"
+  },
+  "turbo": {
+    "pipeline": {
+      "build": {
+        "dependsOn": [
+          "^build"
+        ],
+        "outputs": [
+          "dist/**",
+          ".next/**"
+        ]
+      },
+      "lint": {
+        "outputs": []
+      },
+      "stylelint": {
+        "outputs": []
+      },
+      "dev": {
+        "cache": false
+      }
+    }
+  },
+  "engines": {
+    "npm": ">=7.0.0",
+    "node": ">=14.0.0"
+  }
+}

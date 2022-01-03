@@ -1,0 +1,9 @@
+@import 'src/styles/variables.scss';
+
+.commandLine {
+  padding: $command-line-padding;
+}
+
+.textLine {
+  padding: 0 size(5) 0 size(10);
+}
