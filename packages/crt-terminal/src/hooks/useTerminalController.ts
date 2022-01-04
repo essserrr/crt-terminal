@@ -172,6 +172,7 @@ function useTerminalController({
 
   useEffect(() => {
     if (banner) enqueue({ type: PrinterEvents.PRINT, payload: banner });
+    focusInput();
     // disabled due to inner structure: hook should print banner on mount
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

@@ -12,15 +12,13 @@ import {
 import Layout from '../components/Layout/Layout';
 import classes from './index.module.scss';
 
-const msg = `
+const banner = `
 Long multiline:
 
-22222222222222222222222222222222222222222222222
-333333333333333333333333333333
-44444444444444444444444444444444444444444
-5555555555555555555555555555
+The quick brown fox jumps over the lazy dog
 
-dddddddddddddddddddddddddddddddddd
+Very long word:
+foooooooooooooooooooooooooooooooooooooooooo
 `;
 
 export default function Web() {
@@ -42,7 +40,7 @@ export default function Web() {
             ])
           }
           banner={[
-            textLine({ words: [textWord({ characters: msg })] }),
+            textLine({ words: [textWord({ characters: banner })] }),
             commandLine({
               words: [
                 commandWord({ characters: 'command word', prompt: '>' }),
@@ -50,20 +48,33 @@ export default function Web() {
               ],
             }),
             textLine({
-              words: [textWord({ characters: 'text word' })],
+              className: classes.customLine,
+              words: [textWord({ characters: 'custom text lines:' })],
             }),
             textLine({
-              words: [anchorWord({ characters: 'anchor word', href: 'hello' })],
+              className: classes.customWord,
+              words: [textWord({ className: classes.customWord, characters: 'custom text word' })],
             }),
             textLine({
+              className: classes.customLine,
               words: [
-                buttonWord({
-                  characters: 'button word',
-                  onClick: () => console.log('hello'),
+                anchorWord({
+                  characters: 'anchor word',
+                  href: 'https://github.com/essserrr/crt-terminal/',
                 }),
               ],
             }),
             textLine({
+              className: classes.customLine,
+              words: [
+                buttonWord({
+                  characters: 'button word',
+                  onClick: () => alert('You clicked a button'),
+                }),
+              ],
+            }),
+            textLine({
+              className: classes.customLine,
               words: [commandWord({ characters: 'command word', prompt: '>' })],
             }),
           ]}

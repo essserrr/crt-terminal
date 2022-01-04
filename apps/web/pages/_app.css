@@ -1,5 +1,5 @@
 html {
-  background-color: rgb(24, 23, 29);
+  background-color: rgb(57, 56, 61);
   margin: 0;
   padding: 0;
 }
@@ -7,4 +7,8 @@ html {
 body {
   margin: 0;
   padding: 0;
+}
+
+* {
+  box-sizing: border-box;
 }

@@ -45,7 +45,7 @@ export default function App() {
   const { print } = eventQueue.handlers;
 
   return (
-    <div style={{ width: '600px', height: '600px' }}>
+    <div style={{ width: '1000px', height: '600px' }}>
       <Terminal
         queue={eventQueue}
         banner={[textLine({ words: [textWord({ characters: bannerText })] })]}
@@ -107,14 +107,14 @@ The main part of public interface through which component communicates with oute
 
 You can use these handlers everywhere to fully control behavior of tour terminal.
 
-If you don't like event creators, you can use `enqueue` from `api` field of return object. In this case you also need to import enums `PrinterEvents` and `TerminalEvents`.
+If you don't like event creators, you can use `enqueue` from `api` field of return object. In this case you also need to import enums `PrinterEvents` and `TerminalEvents`. **Important!** To avoid possible bugs, you should pass newly created object in `enqueue` method
 
 ## Sentence, Sentence Helpers
 
 As one can notice `print` handler prints a `PrintableItem`. `PrintableItem` or sentence is an array of `Lines`. Line is essentially a new `div` on the screen, each line has field `words` with array of `Words`. There are two types of lines:
 
-1. `TextLine` (has no additional styling)
-2. `CommandLine` (has default padding).
+1. `TextLine` (larger x-padding, no y-padding)
+2. `CommandLine` (smaller x-padding, y-padding).
 
 **Important!** Each `Lines` and `Words` have common optional fields:
 
