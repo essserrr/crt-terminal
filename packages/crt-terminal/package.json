@@ -1,11 +1,8 @@
 {
   "name": "crt-terminal",
   "version": "1.0.0",
-  "description": "Oldschool CRT terminal for web",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/essserrr/crt-terminal.git"
-  },
+  "description": "Retro looking CRT terminal for web",
+  "repository": "https://github.com/essserrr/crt-terminal",
   "keywords": [
     "crt",
     "terminal",
@@ -17,9 +14,6 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/essserrr/crt-terminal/issues"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/crt-terminal"
   },
   "private": false,
   "scripts": {

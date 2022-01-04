@@ -7,10 +7,16 @@ import { useCommandLine } from '../../hooks/terminal/useCommandLine';
 import { useCommandLineInput } from '../../hooks/terminal/useCommandLineInput';
 import { useCommandHistory } from '../../hooks/terminal/useCommandHistory';
 import { useCommandScreen } from '../../hooks/terminal/useCommandScreen';
-import { useTerminalController, OnCommandCallback } from '../../hooks/useTerminalController';
+import {
+  useTerminalController,
+  OnCommandCallback,
+  ControllerQueue,
+} from '../../hooks/useTerminalController';
 import { useTerminalApp } from '../../hooks/terminal/useTerminalApp';
-import { useSubscribeEventQueue } from '../../hooks/eventQueue/useSubscribeEventQueue';
-import { EventQueueReturnType } from '../../hooks/eventQueue/useEventQueue';
+import {
+  useSubscribeEventQueue,
+  SubscribeQueue,
+} from '../../hooks/eventQueue/useSubscribeEventQueue';
 import { useLoader, LoaderConfig } from '../../hooks/terminal/useLoader';
 
 import TerminalScreen from '../TerminalScreen/TerminalScreen';
@@ -21,9 +27,11 @@ import CommandLine from '../CommandLine/CommandLine';
 
 import classes from './terminal.module.scss';
 
+type QueueInterface = ControllerQueue & SubscribeQueue;
+
 interface TerminalProps {
   onCommand: OnCommandCallback;
-  queue: EventQueueReturnType;
+  queue: QueueInterface;
 
   prompt?: string;
   cursorSymbol?: string;

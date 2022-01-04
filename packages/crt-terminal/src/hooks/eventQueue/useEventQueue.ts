@@ -29,7 +29,6 @@ function useEventQueue() {
     setQueueState([...queue]);
     afterDequeue();
   };
-
   const nextEvent = (): InterfaceEvent | undefined => queueState[0];
 
   const print = (payload: PrintableItem) => {
@@ -67,14 +66,13 @@ function useEventQueue() {
 
   return {
     state: queueState,
+    api: { enqueue, dequeue, nextEvent },
     handlers: {
       print,
       clear,
       focus,
       lock,
       loading,
-      dequeue,
-      nextEvent,
     },
   };
 }

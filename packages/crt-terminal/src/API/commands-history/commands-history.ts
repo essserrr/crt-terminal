@@ -60,16 +60,22 @@ const add = ({
   const sameCommand = commandsHistory[lastIndex] === command;
   if (sameCommand) return { commandsHistory, cursorPosition: commandsLength };
 
-  if (commandsLength < maxHistoryCommands)
+  const canAppend = commandsLength < maxHistoryCommands;
+  if (canAppend)
     return {
       commandsHistory: [...commandsHistory, command],
       cursorPosition: commandsLength + 1,
     };
 
-  return {
-    commandsHistory: [...commandsHistory.slice(1), command],
-    cursorPosition: commandsLength,
-  };
+  const canReplace = Boolean(commandsLength);
+  if (canReplace) {
+    return {
+      commandsHistory: [...commandsHistory.slice(1), command],
+      cursorPosition: commandsLength,
+    };
+  }
+
+  return { commandsHistory, cursorPosition: commandsLength };
 };
 
 export type { CommandsHistory, Command, CommandsHistoryKey };

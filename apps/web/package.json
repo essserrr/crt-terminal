@@ -1,7 +1,7 @@
 {
   "name": "crt-terminal-demo",
   "version": "1.0.0",
-  "description": "Oldschool CRT terminal for web",
+  "description": "Retro looking CRT terminal for web",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/essserrr/crt-terminal.git"

@@ -15,7 +15,7 @@ import { CommandScreenReturnType } from './terminal/useCommandScreen';
 import { CommandHistoryReturnType } from './terminal/useCommandHistory';
 import { LoaderReturnType } from './terminal/useLoader';
 import { TerminalAppReturnType } from './terminal/useTerminalApp';
-import { EventQueueReturnType } from './eventQueue/useEventQueue';
+import { EventQueueReturnType, PrinterEvents } from './eventQueue/useEventQueue';
 
 type InputControllerProps = {
   handlers: CommandLineInputReturnType['handlers'];
@@ -31,6 +31,8 @@ interface KeyboardKeyDownEvent extends PreventProps {
   key: string;
 }
 
+type ControllerQueue = Pick<EventQueueReturnType, 'api'>;
+
 type OnCommandCallback = (command: string) => void;
 
 interface TerminalControllerProps {
@@ -44,7 +46,7 @@ interface TerminalControllerProps {
     prompt: string;
     banner?: PrintableItem;
     onCommand: OnCommandCallback;
-    queue: EventQueueReturnType;
+    queue: ControllerQueue;
   };
 }
 
@@ -89,7 +91,7 @@ function useTerminalController({
     prompt,
     banner,
     queue: {
-      handlers: { print: enqueuePrint },
+      api: { enqueue },
     },
   },
 }: TerminalControllerProps) {
@@ -149,7 +151,7 @@ function useTerminalController({
       const characters = inputValue.trim();
       if (characters) {
         addCommand(characters);
-        enqueuePrint([printCommandLine({ characters, prompt })]);
+        enqueue({ type: PrinterEvents.PRINT, payload: [printCommandLine({ characters, prompt })] });
         onCommand(characters);
       }
     }
@@ -169,7 +171,7 @@ function useTerminalController({
   }, [cursorPosition]);
 
   useEffect(() => {
-    if (banner) enqueuePrint(banner);
+    if (banner) enqueue({ type: PrinterEvents.PRINT, payload: banner });
     // disabled due to inner structure: hook should print banner on mount
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -187,5 +189,10 @@ function useTerminalController({
   };
 }
 
-export type { TerminalControllerReturnType, TerminalControllerProps, OnCommandCallback };
+export type {
+  TerminalControllerReturnType,
+  TerminalControllerProps,
+  OnCommandCallback,
+  ControllerQueue,
+};
 export { useTerminalController };

@@ -5,12 +5,14 @@ import { useSubscribePrinterQueue } from './printerQueue/useSubscribePrinterQueu
 import { TerminalEvents, useTerminalQueue } from './terminalQueue/useTerminalQueue';
 import { useSubscribeTerminalQueue } from './terminalQueue/useSubscribeTerminalQueue';
 
-import { EventQueueReturnType, InterfaceEvent } from './useEventQueue';
 import { TerminalControllerReturnType } from '../useTerminalController';
+import { EventQueueReturnType, InterfaceEvent } from './useEventQueue';
+
+type SubscribeQueue = Pick<EventQueueReturnType, 'api' | 'state'>;
 
 interface SubscribeQueueProps {
   controller: TerminalControllerReturnType['handlers'];
-  queue: EventQueueReturnType;
+  queue: SubscribeQueue;
 }
 
 type SubscribeQueueReturnType = ReturnType<typeof useSubscribeEventQueue>;
@@ -19,7 +21,7 @@ function useSubscribeEventQueue({
   controller,
   queue: {
     state: queueState,
-    handlers: { dequeue, nextEvent },
+    api: { dequeue, nextEvent },
   },
 }: SubscribeQueueProps) {
   const [activeEvent, setActiveEvent] = useState<Nullable<InterfaceEvent>>(null);
@@ -76,5 +78,5 @@ function useSubscribeEventQueue({
   }, [queueState, activeEvent]);
 }
 
-export type { SubscribeQueueProps, SubscribeQueueReturnType };
+export type { SubscribeQueueProps, SubscribeQueueReturnType, SubscribeQueue };
 export { useSubscribeEventQueue };

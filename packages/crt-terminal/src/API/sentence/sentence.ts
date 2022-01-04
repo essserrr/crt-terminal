@@ -8,11 +8,14 @@ enum WordTypes {
   COMMAND = 'COMMAND',
 }
 
-interface BaseWord {
-  characters: string;
+interface ElementBase {
   dataAttribute?: string;
   className?: string;
   id?: string;
+}
+
+interface BaseWord extends ElementBase {
+  characters: string;
 }
 
 interface AnchorWord extends BaseWord {
@@ -105,11 +108,8 @@ enum LineTypes {
   COMMAND = 'COMMAND',
 }
 
-interface BaseLine {
+interface BaseLine extends ElementBase {
   words: Words[];
-  dataAttribute?: string;
-  className?: string;
-  id?: string;
 }
 
 interface TextLine extends BaseLine {

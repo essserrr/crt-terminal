@@ -1,3 +1,4 @@
 .rollup.cache
 .turbo
 src
+.npmrc
