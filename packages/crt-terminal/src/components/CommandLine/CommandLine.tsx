@@ -52,7 +52,11 @@ const CommandLine = React.forwardRef<HTMLInputElement, CommandLineProps>(
           />
           <div className={[classes.inputString, 'crt-command-line__input-string'].join(' ')}>
             <InputString renderValue={renderValue} cursorPosition={cursorPosition} />
-            {lastSelected && <Character selected>{cursorSymbol}</Character>}
+            {lastSelected && (
+              <Character className="crt-cursor-symbol" selected>
+                {cursorSymbol}
+              </Character>
+            )}
           </div>
         </div>
       </div>

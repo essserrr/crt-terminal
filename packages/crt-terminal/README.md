@@ -134,6 +134,10 @@ There are two ways of creating `Lines` and `Words`:
 1. Using helper functions `textWord`, `buttonWord`, `commandWord`, `anchorWord`, `commandLine`, `textLine`
 2. Using object literals, in this cases you need to import `WordTypes`, `LineTypes` enums
 
+## Styling
+
+Every element inside terminal has special fixed style you can safely refer to. You can also add your own `className` for lines and words.
+
 ## Command history
 
 Command history saves entered commands, but no more then `maxHistoryCommands`. You can get previous/next saved command by pressing `Arrow Up` / `Arrow Down`
