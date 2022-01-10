@@ -1,29 +1,28 @@
 .mainContainer {
+  margin-bottom: 40px;
   width: 96vw;
   max-width: 1000px;
   height: 600px;
   max-height: 600px;
-  margin-bottom: 40px;
 }
 
 .buttonsContainer {
+  margin-top: -20px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: -20px;
 }
 
 .button {
   margin: 20px 10px 0;
   padding: 0 10px;
+  display: inline-block;
   min-width: 100px;
   height: 40px;
-
-  display: inline-block;
+  color: #d0fc7e;
   background-color: transparent;
   border: 1px solid #d0fc7e;
   cursor: pointer;
-  color: #d0fc7e;
 
   &:hover {
     color: #111010;

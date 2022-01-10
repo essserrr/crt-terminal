@@ -27,7 +27,6 @@
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
-    "stylelint": "turbo run  stylelint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
@@ -45,11 +44,19 @@
           ".next/**"
         ]
       },
-      "lint": {
-        "outputs": []
+      "test": {
+        "dependsOn": [
+          "build"
+        ]
       },
       "stylelint": {
         "outputs": []
+      },
+      "lint": {
+        "dependsOn": [
+          "^stylelint",
+          "^lint"
+        ]
       },
       "dev": {
         "cache": false
