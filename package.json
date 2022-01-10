@@ -44,18 +44,11 @@
           ".next/**"
         ]
       },
-      "test": {
-        "dependsOn": [
-          "build"
-        ]
-      },
-      "stylelint": {
-        "outputs": []
-      },
+      "test": {},
+      "stylelint": {},
       "lint": {
         "dependsOn": [
-          "^stylelint",
-          "^lint"
+          "stylelint"
         ]
       },
       "dev": {
