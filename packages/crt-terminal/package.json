@@ -22,7 +22,8 @@
     "lint": "eslint . --ext .tsx,.ts --fix",
     "stylelint": "stylelint \"**/*.scss\" --fix",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
-    "test": "jest"
+    "test": "jest --coverage",
+    "test:watch": "jest --watch"
   },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
