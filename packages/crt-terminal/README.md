@@ -107,7 +107,7 @@ The main part of public interface through which component communicates with oute
 
 You can use these handlers everywhere to fully control behavior of tour terminal.
 
-If you don't like event creators, you can use `enqueue` from `api` field of return object. In this case you also need to import enums `PrinterEvents` and `TerminalEvents`. **Important!** To avoid possible bugs, you should pass newly created object in `enqueue` method
+If you don't like event creators, you can use `enqueue` from `api` field of return object. In this case you also need to import enums `PrinterEvents` and `TerminalEvents`. **Important!** To avoid possible bugs, you should pass newly created object into `enqueue` method
 
 ## Sentence, Sentence Helpers
 
