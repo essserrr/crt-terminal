@@ -1,5 +1,7 @@
 import 'jest';
-import { next, DEFAULT_SLIDE, Slides } from './loader';
+import { next, DEFAULT_SLIDE, Slides, createLoader } from './loader';
+
+jest.useFakeTimers();
 
 describe('Loader', () => {
   describe('next', () => {
@@ -32,6 +34,19 @@ describe('Loader', () => {
       [-1, 0, 1].forEach((slideIndex) =>
         expect(next({ slides: slidesShort, slideIndex })).toEqual(fixedResult),
       );
+    });
+  });
+
+  describe('createLoader', () => {
+    it("loader should call it's callback after given interval", async () => {
+      const callback = jest.fn();
+
+      createLoader(callback, 10);
+      expect(callback).not.toBeCalled();
+
+      jest.advanceTimersByTime(10);
+      expect(callback).toBeCalled();
+      expect(callback).toHaveBeenCalledTimes(1);
     });
   });
 });
