@@ -37,6 +37,7 @@
     "pipeline": {
       "build": {
         "dependsOn": [
+          "lint",
           "^build"
         ],
         "outputs": [
