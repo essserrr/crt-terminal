@@ -50,4 +50,4 @@ const provideService = (
 };
 
 export type { ServiceActions, KnownServices };
-export { serviceActions, provideService, isServiceActions };
+export { provideService, isServiceActions };
