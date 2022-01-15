@@ -1,7 +1,5 @@
 import 'jest';
-import { next, DEFAULT_COMMAND, prev } from './commands-history';
-
-jest.useFakeTimers();
+import { next, DEFAULT_COMMAND, prev, add } from './commands-history';
 
 describe('Command history', () => {
   describe('next', () => {
@@ -57,6 +55,45 @@ describe('Command history', () => {
           cursorPosition: cursorPosition - 1,
           command: commandsHistory[cursorPosition - 1],
           commandsHistory,
+        });
+      });
+    });
+  });
+
+  describe('add', () => {
+    it("shouldn't add command", async () => {
+      const command = '3';
+
+      [['1', '2', '3'], []].forEach((commandsHistory) => {
+        const commandsLength = commandsHistory.length;
+
+        expect(add({ commandsHistory, command, maxHistoryCommands: commandsLength })).toEqual({
+          cursorPosition: commandsLength,
+          commandsHistory,
+        });
+      });
+    });
+    it('should add command', async () => {
+      const command = '4';
+
+      [['1', '2', '3'], ['1', '2'], ['1'], []].forEach((commandsHistory) => {
+        const commandsLength = commandsHistory.length;
+
+        expect(add({ commandsHistory, command, maxHistoryCommands: commandsLength + 1 })).toEqual({
+          cursorPosition: commandsLength + 1,
+          commandsHistory: [...commandsHistory, command],
+        });
+      });
+    });
+    it('should remove oldest command', async () => {
+      const command = '4';
+
+      [['1', '2', '3'], ['1', '2'], ['1']].forEach((commandsHistory) => {
+        const commandsLength = commandsHistory.length;
+
+        expect(add({ commandsHistory, command, maxHistoryCommands: commandsLength })).toEqual({
+          cursorPosition: commandsLength,
+          commandsHistory: [...commandsHistory.slice(1), command],
         });
       });
     });
