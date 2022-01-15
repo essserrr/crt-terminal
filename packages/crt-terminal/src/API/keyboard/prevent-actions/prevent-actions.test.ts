@@ -2,8 +2,6 @@ import 'jest';
 import { mock } from 'jest-mock-extended';
 import { preventActions, PreventProps } from './prevent-actions';
 
-jest.useFakeTimers();
-
 describe('Prevent default actions', () => {
   describe('preventActions', () => {
     it('should prevent default action', async () => {

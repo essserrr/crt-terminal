@@ -2,8 +2,6 @@ import 'jest';
 import { moveCursor } from './move-cursor';
 import { Keyboard } from '../actions/actions';
 
-jest.useFakeTimers();
-
 describe('Move cursor', () => {
   describe('moveCursor', () => {
     it('should move right', async () => {

@@ -1,8 +1,6 @@
 import 'jest';
 import { press } from './press';
 
-jest.useFakeTimers();
-
 describe('Press', () => {
   describe('press', () => {
     it('should throw error on incorrect input', async () => {

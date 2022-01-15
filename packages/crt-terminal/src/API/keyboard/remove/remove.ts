@@ -63,4 +63,4 @@ const remove = (props: KeyboardRequest, key: RemoveActions): KeyboardResponse =>
 };
 
 export type { RemoveActions };
-export { removeActions, remove, isRemoveActions };
+export { remove, isRemoveActions };
