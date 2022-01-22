@@ -27,4 +27,4 @@ const preventActions = (event: PreventProps) => {
 };
 
 export type { PreventedActions, PreventProps };
-export { preventedActions, preventActions, isPreventedActions };
+export { preventActions, isPreventedActions };

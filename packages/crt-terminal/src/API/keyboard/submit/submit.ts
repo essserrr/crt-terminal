@@ -19,4 +19,4 @@ const submit = (): KeyboardResponse => ({
 });
 
 export type { SubmitActions };
-export { submitActions, submit, isSubmitActions };
+export { submit, isSubmitActions, DEFAULT_INPUT, DEFAULT_RENDER, DEFAULT_POSITION };

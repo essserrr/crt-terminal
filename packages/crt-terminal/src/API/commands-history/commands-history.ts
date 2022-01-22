@@ -2,7 +2,7 @@ type Command = string;
 type CommandsHistory = Command[];
 type CommandsHistoryKey = number;
 
-const DEFAULT_ITEM: Command = '';
+const DEFAULT_COMMAND: Command = '';
 
 interface HistoryActionBaseProps {
   commandsHistory: CommandsHistory;
@@ -26,7 +26,7 @@ const next = ({
   const nextIndex = oldCursorPosition + 1;
 
   const cursorPosition = lastIndex < nextIndex ? commandsHistory.length : nextIndex;
-  const command = commandsHistory[nextIndex] || DEFAULT_ITEM;
+  const command = commandsHistory[cursorPosition] || DEFAULT_COMMAND;
 
   return { commandsHistory, cursorPosition, command };
 };
@@ -38,7 +38,7 @@ const prev = ({
   const prevIndex = oldCursorPosition - 1;
 
   const cursorPosition = prevIndex < 0 ? -1 : prevIndex;
-  const command = commandsHistory[prevIndex] || DEFAULT_ITEM;
+  const command = commandsHistory[cursorPosition] || DEFAULT_COMMAND;
 
   return { commandsHistory, cursorPosition, command };
 };
@@ -79,4 +79,4 @@ const add = ({
 };
 
 export type { CommandsHistory, Command, CommandsHistoryKey };
-export { next, prev, add };
+export { next, prev, add, DEFAULT_COMMAND };

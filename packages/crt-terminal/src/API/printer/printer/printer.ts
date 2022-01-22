@@ -1,6 +1,6 @@
 import { Nullable } from '../../../utils/helpers';
 import { Lines } from '../../sentence/sentence';
-import { printMultiline } from '../multiline/multilines';
+import { printMultiline } from '../multiline/multiline';
 
 type Printer = Lines[];
 type PrintableItem = Lines[];

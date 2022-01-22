@@ -63,4 +63,4 @@ const moveCursor = (
 };
 
 export type { MoveActions };
-export { moveActions, moveCursor, isMoveActions };
+export { moveCursor, isMoveActions };
