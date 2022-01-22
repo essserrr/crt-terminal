@@ -13,12 +13,12 @@ const combineWords = ({
   nextWord,
   wordFullyPrinted,
 }: CombineWordProps): Words | undefined =>
-  wordFullyPrinted || !prevWord || !nextWord
-    ? nextWord
-    : {
+  prevWord && nextWord && !wordFullyPrinted
+    ? {
         ...prevWord,
         characters: prevWord.characters + nextWord.characters,
-      };
+      }
+    : nextWord;
 
 interface MakeWordChunkProps {
   firstWord?: Words;
@@ -54,7 +54,7 @@ const getRemainingLine = ({
   remainingLine,
   remainingWords,
 }: GetRemainingLineProps): Nullable<Lines> =>
-  remainingWords ? { ...remainingLine, words: remainingWords } : null;
+  remainingWords && remainingWords.length > 0 ? { ...remainingLine, words: remainingWords } : null;
 
 interface PrintLineRequest {
   remainingLine: Lines;
