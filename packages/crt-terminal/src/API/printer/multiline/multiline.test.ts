@@ -2,14 +2,17 @@ import 'jest';
 import { printMultiline } from './multiline';
 import { textWord, textLine } from '../../sentence/sentence';
 
-describe('Print line', () => {
+describe('Print multiline', () => {
   const HELLO = textWord({ characters: 'hello' });
+  const HE = textWord({ characters: 'he' });
+  const LLO = textWord({ characters: 'llo' });
   const WORLD = textWord({ characters: 'world' });
 
   const EMPTY_LINE = textLine({ words: [] });
   const HELLO_LINE = textLine({ words: [HELLO] });
+  const HE_LINE = textLine({ words: [HE] });
+  const LLO_LINE = textLine({ words: [LLO] });
   const WORLD_LINE = textLine({ words: [WORLD] });
-  const HELLO_WORLD_LINE = textLine({ words: [HELLO, WORLD] });
 
   it('should not print empty remaining lines', async () => {
     expect(
@@ -56,8 +59,8 @@ describe('Print line', () => {
     ).toEqual({
       newLine: false,
       wordFullyPrinted: false,
-      remainingLines: [textLine({ words: [textWord({ characters: 'llo' })] })],
-      printedLines: [WORLD_LINE, textLine({ words: [textWord({ characters: 'he' })] })],
+      remainingLines: [LLO_LINE],
+      printedLines: [WORLD_LINE, HE_LINE],
     });
   });
   it('should chunkify without newline mode', async () => {
@@ -72,8 +75,8 @@ describe('Print line', () => {
     ).toEqual({
       newLine: false,
       wordFullyPrinted: false,
-      remainingLines: [textLine({ words: [textWord({ characters: 'llo' })] })],
-      printedLines: [textLine({ words: [WORLD, textWord({ characters: 'he' })] })],
+      remainingLines: [LLO_LINE],
+      printedLines: [textLine({ words: [WORLD, HE] })],
     });
   });
 
@@ -89,8 +92,8 @@ describe('Print line', () => {
     ).toEqual({
       newLine: false,
       wordFullyPrinted: false,
-      remainingLines: [textLine({ words: [textWord({ characters: 'llo' })] })],
-      printedLines: [WORLD_LINE, textLine({ words: [textWord({ characters: 'he' })] })],
+      remainingLines: [LLO_LINE],
+      printedLines: [WORLD_LINE, HE_LINE],
     });
   });
   it('should merge chunks without newline mode', async () => {
@@ -105,7 +108,7 @@ describe('Print line', () => {
     ).toEqual({
       newLine: false,
       wordFullyPrinted: false,
-      remainingLines: [textLine({ words: [textWord({ characters: 'llo' })] })],
+      remainingLines: [LLO_LINE],
       printedLines: [textLine({ words: [textWord({ characters: 'worldhe' })] })],
     });
   });
@@ -139,7 +142,7 @@ describe('Print line', () => {
       newLine: true,
       wordFullyPrinted: true,
       remainingLines: null,
-      printedLines: [HELLO_WORLD_LINE],
+      printedLines: [textLine({ words: [HELLO, WORLD] })],
     });
   });
 });

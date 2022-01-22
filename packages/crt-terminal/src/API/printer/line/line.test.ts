@@ -4,12 +4,15 @@ import { textWord, textLine } from '../../sentence/sentence';
 
 describe('Print line', () => {
   const HELLO = textWord({ characters: 'hello' });
+  const HE = textWord({ characters: 'he' });
+  const LLO = textWord({ characters: 'llo' });
   const WORLD = textWord({ characters: 'world' });
 
   const EMPTY_LINE = textLine({ words: [] });
   const HELLO_LINE = textLine({ words: [HELLO] });
+  const HE_LINE = textLine({ words: [HE] });
+  const LLO_LINE = textLine({ words: [LLO] });
   const WORLD_LINE = textLine({ words: [WORLD] });
-  const HELLO_WORLD_LINE = textLine({ words: [HELLO, WORLD] });
 
   it('should print if no remaining lines', async () => {
     expect(
@@ -76,8 +79,8 @@ describe('Print line', () => {
         wordFullyPrinted: true,
       }),
     ).toEqual({
-      remainingLine: textLine({ words: [textWord({ characters: 'llo' })] }),
-      printedLine: textLine({ words: [textWord({ characters: 'he' })] }),
+      remainingLine: LLO_LINE,
+      printedLine: HE_LINE,
       wordFullyPrinted: false,
     });
   });
@@ -90,7 +93,7 @@ describe('Print line', () => {
         wordFullyPrinted: false,
       }),
     ).toEqual({
-      remainingLine: textLine({ words: [textWord({ characters: 'llo' })] }),
+      remainingLine: LLO_LINE,
       printedLine: textLine({ words: [textWord({ characters: 'hellohe' })] }),
       wordFullyPrinted: false,
     });
@@ -99,7 +102,7 @@ describe('Print line', () => {
   it('should add whole word to printed', async () => {
     expect(
       printLine({
-        remainingLine: HELLO_WORLD_LINE,
+        remainingLine: textLine({ words: [HELLO, WORLD] }),
         printedLine: HELLO_LINE,
         charactersToPrint: 5,
         wordFullyPrinted: true,
