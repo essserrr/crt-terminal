@@ -63,7 +63,7 @@ const printMultiline = ({
   const {
     remainingLine,
     printedLine,
-    wordFullyPrinted: remainingLineAfterPrint,
+    wordFullyPrinted: wordFullyPrintedAfterPrint,
   } = printLine({
     remainingLine: firstLine,
     printedLine: newLine ? { ...firstLine, words: [] } : printedLines[printedLines.length - 1],
@@ -73,7 +73,7 @@ const printMultiline = ({
 
   return {
     newLine: !remainingLine,
-    wordFullyPrinted: remainingLineAfterPrint,
+    wordFullyPrinted: wordFullyPrintedAfterPrint,
     printedLines: combinePrintedLines({ printedLines, printedLine, newLine }),
     remainingLines: combineRemainingLines({ remainingLines, remainingLine }),
   };
