@@ -48,6 +48,7 @@ interface TerminalControllerProps {
     onCommand: OnCommandCallback;
     queue: ControllerQueue;
   };
+  focusOnMount: boolean;
 }
 
 type TerminalControllerReturnType = ReturnType<typeof useTerminalController>;
@@ -94,6 +95,7 @@ function useTerminalController({
       api: { enqueue },
     },
   },
+  focusOnMount,
 }: TerminalControllerProps) {
   const [lockedByLoader, setLockedByLoader] = useState(false);
 
@@ -172,7 +174,9 @@ function useTerminalController({
 
   useEffect(() => {
     if (banner) enqueue({ type: PrinterEvents.PRINT, payload: banner });
-    focusInput();
+    if (focusOnMount) {
+      focusInput();
+    }
     // disabled due to inner structure: hook should print banner on mount
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

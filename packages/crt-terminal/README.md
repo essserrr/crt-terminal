@@ -95,6 +95,8 @@ export default function App() {
     - `screenEffects?: boolean` - screen shaking
     - `textEffects?: boolean` - text glow pulsing
 
+8.  `focusOnMount?: boolean` - Should we focus the console on mount (defaults to true)
+
 ## Event Queue
 
 The main part of public interface through which component communicates with outer world. `useEventQueue` exports event creators in `handlers` field of return object, namely:
