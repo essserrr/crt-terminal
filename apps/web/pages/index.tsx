@@ -69,6 +69,7 @@ export default function Web() {
               words: [
                 buttonWord({
                   characters: 'button word',
+                  /* eslint-disable-next-line */
                   onClick: () => alert('You clicked a button'),
                 }),
               ],
