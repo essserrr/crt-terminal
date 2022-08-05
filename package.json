@@ -28,11 +28,16 @@
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
     "test": "turbo run test",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "prepare": "husky install",
+    "prepush:app": "yarn --cwd ./apps/web prepush",
+    "prepush:terminal": "yarn --cwd ./packages/crt-terminal prepush",
+    "prepush": "yarn prepush:app && yarn prepush:terminal"
   },
   "devDependencies": {
     "prettier": "^2.5.1",
-    "turbo": "latest"
+    "turbo": "latest",
+    "husky": "^8.0.0"
   },
   "turbo": {
     "pipeline": {
