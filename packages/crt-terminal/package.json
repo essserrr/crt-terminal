@@ -1,6 +1,6 @@
 {
   "name": "crt-terminal",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Retro looking CRT terminal for web",
   "repository": "https://github.com/essserrr/crt-terminal",
   "keywords": [
@@ -17,7 +17,7 @@
   },
   "private": false,
   "scripts": {
-    "build": "rollup -c",
+    "build": "rm -rf dist && rollup -c",
     "dev": "rollup -cw",
     "lint": "eslint . --ext .tsx,.ts --fix --max-warnings=0",
     "stylelint": "stylelint \"**/*.scss\" --fix",
