@@ -104,6 +104,7 @@ The main part of public interface through which component communicates with oute
 3. `focus: () => void` - focuses terminal input
 4. `lock: (payload: boolean) => void` - locks/unlocks terminal input preventing any user attempt to enter a command
 5. `loading: (payload: boolean) => void` - starts/ends loader. **Important!** Loading start locks input automatically, if it is not locked yet. Loading end unlocks input automatically, if it was locked **by loader**
+6. `type: (payload: string) => void` - prints message in terminal's command line. **Important!** Type is async operation, so your next message will be printed as soon as the previous one is finished
 
 You can use these handlers everywhere to fully control behavior of tour terminal.
 
