@@ -74,6 +74,7 @@ function useTerminalController({
     handlers: {
       preventDefault,
       addCharacter,
+      setInput,
       removeCharacter,
       moveCommandCursor,
       submitCommand,
@@ -142,6 +143,10 @@ function useTerminalController({
     if (!inputLocked) addCharacter(newInput);
   };
 
+  const type = (characters: string) => {
+    if (!inputLocked) setInput(characters);
+  };
+
   const handleKeyboardEvent = (key: string) => {
     if (isMoveActions(key)) moveCommandCursor(key);
     if (isRemoveActions(key)) removeCharacter(key);
@@ -190,6 +195,7 @@ function useTerminalController({
       handleInputChange,
       handleKeyboardDown,
       loading,
+      type,
     },
   };
 }

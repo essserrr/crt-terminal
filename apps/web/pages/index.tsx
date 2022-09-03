@@ -23,7 +23,7 @@ foooooooooooooooooooooooooooooooooooooooooo
 
 export default function Web() {
   const eventQueue = useEventQueue();
-  const { lock, loading, clear, print, focus } = eventQueue.handlers;
+  const { lock, loading, clear, print, type, focus } = eventQueue.handlers;
   return (
     <Layout>
       <main className={classes.mainContainer}>
@@ -131,6 +131,9 @@ export default function Web() {
           type="button"
         >
           Print
+        </button>
+        <button className={classes.button} onClick={() => type('Hello')} type="button">
+          Type
         </button>
         <button className={classes.button} onClick={() => focus()} type="button">
           Focus

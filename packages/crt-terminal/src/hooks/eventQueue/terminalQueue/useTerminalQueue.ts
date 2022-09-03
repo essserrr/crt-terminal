@@ -4,6 +4,7 @@ enum TerminalEvents {
   FOCUS = 'FOCUS',
   LOCK = 'LOCK',
   LOADING = 'LOADING',
+  TYPE = 'TYPE',
 }
 
 interface FocusEvent {
@@ -20,7 +21,12 @@ interface LoadingEvent {
   payload: boolean;
 }
 
-type TerminalQueueEvents = FocusEvent | LockEvent | LoadingEvent;
+interface TypeEvent {
+  type: TerminalEvents.TYPE;
+  payload: string;
+}
+
+type TerminalQueueEvents = FocusEvent | LockEvent | LoadingEvent | TypeEvent;
 
 type TerminalQueue = TerminalQueueEvents[];
 
@@ -64,17 +70,32 @@ function useTerminalQueue() {
     });
   };
 
+  const type = (payload: string) => {
+    enqueue({
+      type: TerminalEvents.TYPE,
+      payload,
+    });
+  };
+
   return {
     state: queueState,
     handlers: {
       focus,
       lock,
       loading,
+      type,
       dequeue,
       nextEvent,
     },
   };
 }
 
-export type { FocusEvent, LockEvent, LoadingEvent, TerminalQueueEvents, TerminalQueueReturnType };
+export type {
+  FocusEvent,
+  LockEvent,
+  LoadingEvent,
+  TypeEvent,
+  TerminalQueueEvents,
+  TerminalQueueReturnType,
+};
 export { useTerminalQueue, TerminalEvents };

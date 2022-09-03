@@ -5,7 +5,7 @@ import { TerminalEvents, TerminalQueueEvents, TerminalQueueReturnType } from './
 
 type ControllerTerminalHandlers = Pick<
   TerminalControllerReturnType['handlers'],
-  'focus' | 'loading' | 'lock'
+  'focus' | 'loading' | 'lock' | 'type'
 >;
 
 interface SubscribeQueueProps {
@@ -16,7 +16,7 @@ interface SubscribeQueueProps {
 type SubscribeQueueReturnType = ReturnType<typeof useSubscribeTerminalQueue>;
 
 function useSubscribeTerminalQueue({
-  controller: { focus, loading, lock },
+  controller: { focus, loading, lock, type },
   queue: {
     state: queueState,
     handlers: { dequeue, nextEvent },
@@ -37,6 +37,10 @@ function useSubscribeTerminalQueue({
         break;
       case TerminalEvents.LOCK:
         lock(event.payload);
+        dequeue(nullifyActiveEvent);
+        break;
+      case TerminalEvents.TYPE:
+        type(event.payload);
         dequeue(nullifyActiveEvent);
         break;
       default:

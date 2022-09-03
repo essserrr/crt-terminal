@@ -6,9 +6,10 @@ import {
   FocusEvent,
   LockEvent,
   LoadingEvent,
+  TypeEvent,
 } from './terminalQueue/useTerminalQueue';
 
-type InterfaceEvent = FocusEvent | ClearEvent | PrintEvent | LockEvent | LoadingEvent;
+type InterfaceEvent = FocusEvent | ClearEvent | PrintEvent | LockEvent | LoadingEvent | TypeEvent;
 
 type EventQueue = InterfaceEvent[];
 
@@ -64,6 +65,13 @@ function useEventQueue() {
     });
   };
 
+  const type = (payload: string) => {
+    enqueue({
+      type: TerminalEvents.TYPE,
+      payload,
+    });
+  };
+
   return {
     state: queueState,
     api: { enqueue, dequeue, nextEvent },
@@ -73,6 +81,7 @@ function useEventQueue() {
       focus,
       lock,
       loading,
+      type,
     },
   };
 }

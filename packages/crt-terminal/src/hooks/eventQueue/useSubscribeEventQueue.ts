@@ -35,7 +35,12 @@ function useSubscribeEventQueue({
 
   const terminalQueue = useTerminalQueue();
   const {
-    handlers: { focus: terminalFocus, loading: terminalLoading, lock: terminalLock },
+    handlers: {
+      focus: terminalFocus,
+      loading: terminalLoading,
+      lock: terminalLock,
+      type: terminalType,
+    },
   } = terminalQueue;
   useSubscribeTerminalQueue({ queue: terminalQueue, controller });
 
@@ -51,6 +56,10 @@ function useSubscribeEventQueue({
         break;
       case TerminalEvents.LOCK:
         terminalLock(event.payload);
+        dequeue(nullifyActiveEvent);
+        break;
+      case TerminalEvents.TYPE:
+        terminalType(event.payload);
         dequeue(nullifyActiveEvent);
         break;
       case PrinterEvents.CLEAR:
