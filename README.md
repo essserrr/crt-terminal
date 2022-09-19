@@ -32,7 +32,7 @@ Then you need to import `Terminal`, `useEventQueue` (or implement your own Event
 
 ```js
 import React from 'react';
-import { Terminal, useEventQueue, textLine, textWord } from 'crt-terminal';
+import { Terminal, useEventQueue, textLine, textWord, commandWord } from 'crt-terminal';
 
 const bannerText = `
 Hello world!
