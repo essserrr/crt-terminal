@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   isMoveActions,
   isPreventedActions,
@@ -172,8 +172,13 @@ function useTerminalController({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cursorPosition]);
 
+  const loaded = useRef(false);
+
   useEffect(() => {
-    if (banner) enqueue({ type: PrinterEvents.PRINT, payload: banner });
+    if (banner && !loaded.current) {
+      loaded.current = true;
+      enqueue({ type: PrinterEvents.PRINT, payload: banner });
+    }
     if (focusOnMount) {
       focusInput();
     }
