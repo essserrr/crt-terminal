@@ -69,13 +69,13 @@ export default function App() {
 
 ## Required Props
 
-1. `queue: QueueInterface` - `state` and `api` of `useEventQueue`;
+1. `queue: QueueInterface` - object returned by `useEventQueue`, contains `state` and `api` fields;
 2. `(command: string) => void` - function to be called every time new command is submitted;
 
 ## Optional props
 
 1.  `prompt?: string` - prompt symbol before command input; default: `>\xa0`;
-2.  `cursorSymbol?: string` - function to be called every time new command is submitted; default: `\xa0`;
+2.  `cursorSymbol?: string` - cursor symbol inside command input; default: `\xa0`;
 3.  `maxHistoryCommands?: number` - max number of commands to be memorized in commands history; default: `10`;
 4.  `banner?: PrintableItem` - message to be printed after `Terminal` is mounted; default: `undefined`.
 5.  `loader?: Partial<LoaderConfig>` - loader config, consist of:
@@ -93,36 +93,36 @@ export default function App() {
     - `scanner?: boolean` - scanner line; default: `true`;
     - `pixels?: boolean` - "pixels" effect; default: `true`;
     - `screenEffects?: boolean` - screen shaking; default: `true`;
-    - `textEffects?: boolean` - text glow pulsing; default: `true`;
+    - `textEffects?: boolean` - text glow, pulsing; default: `true`;
 
 ## Event Queue
 
-The main part of public interface through which component communicates with outer world. `useEventQueue` exports event creators in `handlers` field of return object, namely:
+Event Queue is the main part of public interface through which component communicates with outer world. `useEventQueue` exports event creators in `handlers` field of returned object, namely:
 
-1. `print: (payload: PrintableItem) => void` - prints a message on terminal "screen". **Important!** Print is async operation, so your next message will be printed as soon as the previous one is finished
-2. `clear: () => void` - clears terminal "screen" with respect to printing queue
-3. `focus: () => void` - focuses terminal input
-4. `lock: (payload: boolean) => void` - locks/unlocks terminal input preventing any user attempt to enter a command
-5. `loading: (payload: boolean) => void` - starts/ends loader. **Important!** Loading start locks input automatically, if it is not locked yet. Loading end unlocks input automatically, if it was locked **by loader**
+1. `print: (payload: PrintableItem) => void` - prints a message on terminal "screen". **Important!** Print is async operation, so your next message will be printed as soon as the previous ones are done printing;
+2. `clear: () => void` - clears terminal "screen" with respect to printing queue;
+3. `focus: () => void` - focuses terminal input;
+4. `lock: (payload: boolean) => void` - locks/unlocks terminal input preventing any user attempt to enter a command;
+5. `loading: (payload: boolean) => void` - starts/ends loader. **Important!** Loading start locks input automatically, if it is not locked yet. Loading end unlocks input automatically, if it was locked **by loader**.
 
-You can use these handlers everywhere to fully control behavior of tour terminal.
+You can use these handlers everywhere to fully control behavior of your terminal.
 
-If you don't like event creators, you can use `enqueue` from `api` field of return object. In this case you also need to import enums `PrinterEvents` and `TerminalEvents`. **Important!** To avoid possible bugs, you should pass newly created object into `enqueue` method
+If you don't like event creators, you can use `enqueue` function from `api` field of the object returned by `useEventQueue`. In this case you also need to import enums `PrinterEvents` and `TerminalEvents`. **Important!** To avoid possible bugs, you should pass a newly created object every time `enqueue` method is called.
 
 ## Sentence, Sentence Helpers
 
-As one can notice `print` handler prints a `PrintableItem`. `PrintableItem` or sentence is an array of `Lines`. Line is essentially a new `div` on the screen, each line has field `words` with array of `Words`. There are two types of lines:
+As one can notice `print` handler prints a `PrintableItem`. `PrintableItem` or sentence is an array of `Lines`. Line is essentially a new `div` on the screen, each line has field `words` containing array of `Words`. There are two types of lines:
 
 1. `TextLine` (larger x-padding, no y-padding)
-2. `CommandLine` (smaller x-padding, y-padding).
+2. `CommandLine` (smaller x-padding, has y-padding).
 
 **Important!** Each `Lines` and `Words` have common optional fields:
 
-1. `dataAttribute` - `data-crt-terminal` attribute
+1. `data-crt-terminal` - can be defined for customization, better search, etc.
 2. `className`
 3. `id`
 
-Word is essentially a new `span` inside line. Word can be multilined, but aware of span intereactions whe one of them is multilined. Each word has `characters` filed with content of a word. There are quite few types of words:
+Word is essentially a new `span` inside a line. Word can be multilined. Each word has `characters` filed containing content of a word. There are following types of words:
 
 1. `AnchorWord` - `<a>` element with optional `href` and `onClick` fields
 2. `TextWord` - `<span>` element
@@ -136,7 +136,7 @@ There are two ways of creating `Lines` and `Words`:
 
 ## Styling
 
-Every element inside terminal has special fixed style you can safely refer to. You can also add your own `className` for lines and words.
+Every element inside terminal has special fixed style, to which you can safely refer to. You can also add your own `className` for lines and words.
 
 ## Command history
 
