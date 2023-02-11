@@ -32,7 +32,7 @@ Then you need to import `Terminal`, `useEventQueue` (or implement your own Event
 
 ```js
 import React from 'react';
-import { Terminal, useEventQueue, textLine, textWord } from 'crt-terminal';
+import { Terminal, useEventQueue, textLine, textWord, commandWord } from 'crt-terminal';
 
 const bannerText = `
 Hello world!
@@ -69,31 +69,31 @@ export default function App() {
 
 ## Required Props
 
-1. `queue: QueueInterface` - `state` and `api` of `useEventQueue`
-2. `(command: string) => void` - function to be called every time new command is submitted
+1. `queue: QueueInterface` - `state` and `api` of `useEventQueue`;
+2. `(command: string) => void` - function to be called every time new command is submitted;
 
 ## Optional props
 
-1.  `prompt?: string` - prompt symbol before command input
-2.  `cursorSymbol?: string` - function to be called every time new command is submitted
-3.  `maxHistoryCommands?: number` - max number of commands to be memorized in commands history
-4.  `banner?: PrintableItem` - message to be printed after `Terminal` is mounted
+1.  `prompt?: string` - prompt symbol before command input; default: `>\xa0`;
+2.  `cursorSymbol?: string` - function to be called every time new command is submitted; default: `\xa0`;
+3.  `maxHistoryCommands?: number` - max number of commands to be memorized in commands history; default: `10`;
+4.  `banner?: PrintableItem` - message to be printed after `Terminal` is mounted; default: `undefined`.
 5.  `loader?: Partial<LoaderConfig>` - loader config, consist of:
 
-    - `slides: string[]` - array of consecutive loader states
-    - `loaderSpeed: number` - interval between state changes
+    - `slides: string[]` - array of consecutive loader states; default: `['.', '..', '...']`;
+    - `loaderSpeed: number` - interval between state changes; default: `1000`;
 
 6.  `printer?: Partial<PrinterConfig>` - printer config, consist of:
 
-    - `printerSpeed: number` - interval between state changes
-    - `charactersPerTick: number` - characters to print on each tick
+    - `printerSpeed: number` - interval between state changes; default: `20`;
+    - `charactersPerTick: number` - characters to print on each tick; default: `5`;
 
 7.  `effects?` enabling or disabling following effects:
 
-    - `scanner?: boolean` - scanner line
-    - `pixels?: boolean` - "pixels" effect
-    - `screenEffects?: boolean` - screen shaking
-    - `textEffects?: boolean` - text glow pulsing
+    - `scanner?: boolean` - scanner line; default: `true`;
+    - `pixels?: boolean` - "pixels" effect; default: `true`;
+    - `screenEffects?: boolean` - screen shaking; default: `true`;
+    - `textEffects?: boolean` - text glow pulsing; default: `true`;
 
 ## Event Queue
 

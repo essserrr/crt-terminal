@@ -23,8 +23,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "stylelint": "stylelint \"**/*.scss\" --fix"
+    "lint": "next lint --fix --max-warnings=0",
+    "stylelint": "stylelint \"**/*.scss\" --fix",
+    "prepush": "yarn stylelint && yarn lint"
   },
   "dependencies": {
     "next": "12.0.7",

@@ -1,6 +1,6 @@
 {
   "name": "crt-terminal",
-  "version": "1.0.0",
+  "version": "1.0.12",
   "description": "Retro looking CRT terminal for web",
   "repository": "https://github.com/essserrr/crt-terminal",
   "keywords": [
@@ -17,10 +17,11 @@
   },
   "private": false,
   "scripts": {
-    "build": "rollup -c",
+    "build": "rm -rf dist && rollup -c",
     "dev": "rollup -cw",
-    "lint": "eslint . --ext .tsx,.ts --fix",
+    "lint": "eslint . --ext .tsx,.ts --fix --max-warnings=0",
     "stylelint": "stylelint \"**/*.scss\" --fix",
+    "prepush": "yarn stylelint && yarn lint",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
     "test": "jest --coverage",
     "test:watch": "jest --watch"
@@ -48,7 +49,6 @@
     "@types/react": "^17.0.34",
     "@typescript-eslint/eslint-plugin": "^5.7.0",
     "@typescript-eslint/parser": "^5.7.0",
-    "airbnb": "^0.0.2",
     "autoprefixer": "^10.4.2",
     "babel-jest": "^27.3.1",
     "babel-loader": "^8.2.3",

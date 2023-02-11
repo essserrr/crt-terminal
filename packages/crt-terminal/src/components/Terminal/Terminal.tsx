@@ -47,6 +47,7 @@ interface TerminalProps {
     screenEffects?: boolean;
     textEffects?: boolean;
   };
+  focusOnMount?: boolean;
 }
 
 const Terminal = function Terminal({
@@ -61,6 +62,7 @@ const Terminal = function Terminal({
   printer: { printerSpeed = 20, charactersPerTick = 5 } = {},
 
   effects: { scanner = true, pixels = true, screenEffects = true, textEffects = true } = {},
+  focusOnMount = true
 }: TerminalProps) {
   const terminalApp = useTerminalApp();
   const {
@@ -97,6 +99,7 @@ const Terminal = function Terminal({
     commandScreen: { handlers: screenHandlers },
     loaderComponent,
     interface: { banner, prompt, onCommand, queue },
+    focusOnMount,
   });
   const { handleKeyboardDown, handleInputChange } = controllerHandlers;
 
