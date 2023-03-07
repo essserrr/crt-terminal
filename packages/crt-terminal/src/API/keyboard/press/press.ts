@@ -10,7 +10,7 @@ const newPosition = ({ oldLength, newLength, cursorPosition }: PositionProps) =>
   const wasLast = oldLength === cursorPosition;
 
   if (wasLast) return newLength;
-  return cursorPosition;
+  return cursorPosition + 1;
 };
 
 interface RenderProps {
