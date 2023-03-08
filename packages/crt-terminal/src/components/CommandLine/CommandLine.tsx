@@ -4,6 +4,7 @@ import { TerminalControllerReturnType } from '../../hooks/useTerminalController'
 import Character from '../Character/Character';
 import InputString from './components/InputString/InputString';
 import classes from './command-line.module.scss';
+import Input from './components/Input';
 
 interface CommandLineProps {
   prompt: string;
@@ -41,7 +42,7 @@ const CommandLine = React.forwardRef<HTMLInputElement, CommandLineProps>(
       <div className={[classes.commandLine, 'crt-command-line'].join(' ')}>
         <span className="crt-command-line__prompt">{prompt}</span>
         <div className={[classes.inputWrap, 'crt-command-line__input-wrapper'].join(' ')}>
-          <input
+          <Input
             className={[classes.input, 'crt-command-line__input'].join(' ')}
             id="crt-command-line-input"
             ref={inputElement}

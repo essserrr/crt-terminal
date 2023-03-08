@@ -10,6 +10,7 @@ const newPosition = ({ oldLength, newLength, cursorPosition }: PositionProps) =>
   const wasLast = oldLength === cursorPosition;
 
   if (wasLast) return newLength;
+  if (newLength < oldLength) return newLength;
   return cursorPosition + 1;
 };
 
@@ -22,8 +23,8 @@ interface RenderProps {
 const newRender = ({ renderValue, cursorPosition, newInput }: RenderProps) => {
   const oldLength = renderValue.length;
   const delta = newInput.length - renderValue.length;
-
   const addedCharacters = newInput.substring(cursorPosition, cursorPosition + delta);
+
   return [
     ...renderValue.slice(0, cursorPosition),
     ...addedCharacters.split(''),
@@ -33,7 +34,6 @@ const newRender = ({ renderValue, cursorPosition, newInput }: RenderProps) => {
 
 const press = ({ newInput, renderValue, cursorPosition }: KeyboardRequest): KeyboardResponse => {
   if (!newInput) throw new Error('Cannot press without a new input');
-  if (newInput.length < renderValue.length) throw new Error('New input is shorter then old one');
 
   return {
     inputValue: newInput,
