@@ -1,4 +1,9 @@
-import React, { useEffect, useImperativeHandle, useRef } from 'react'
+import React, {
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useRef
+} from 'react'
 
 type InputProps = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
 
@@ -22,13 +27,13 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   } = props;
   const _value = ('value' in props) ? value : ('defaultValue' in props) ? defaultValue : null;
 
-  const forceSetValue = () => {
+  const forceSetValue = useCallback(() => {
     if ('value' in props && element.current) {
       const input = element.current;
       input.value = value as string;
       input.setAttribute('value', value as string);
     }
-  };
+  }, [value]);
 
   const onKeyDownInner = (e: React.KeyboardEvent<HTMLInputElement>) => {
     // return when inputing chinese pinyin
@@ -85,8 +90,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   useEffect(() => {
     if (value === element.current?.value) return;
     forceSetValue();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value]);
+  }, [value, forceSetValue]);
 
   return (
     <input

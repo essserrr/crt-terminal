@@ -3,8 +3,8 @@ import { CommandLine as CommandLineState } from '../../hooks/terminal/useCommand
 import { TerminalControllerReturnType } from '../../hooks/useTerminalController';
 import Character from '../Character/Character';
 import InputString from './components/InputString/InputString';
-import classes from './command-line.module.scss';
 import Input from './components/Input';
+import classes from './command-line.module.scss';
 
 interface CommandLineProps {
   prompt: string;
