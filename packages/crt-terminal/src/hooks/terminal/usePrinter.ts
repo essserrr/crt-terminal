@@ -18,13 +18,20 @@ type ResolveCallback = Nullable<(value: unknown) => void>;
 interface PrinterConfig {
   printerSpeed: number;
   charactersPerTick: number;
+
+  onPrintStatusChange?: (nextPrintState: boolean) => void;
 }
 
 interface PrinterProps extends PrinterConfig {
   afterPrintCallback: () => void;
 }
 
-function usePrinter({ printerSpeed, charactersPerTick, afterPrintCallback }: PrinterProps) {
+function usePrinter({
+  printerSpeed,
+  charactersPerTick,
+  afterPrintCallback,
+  onPrintStatusChange,
+}: PrinterProps) {
   const [isPrinting, setIsPrinting] = useState(false);
   const [activeTimeout, setActiveTimeout] = useState<IntervalID | null>(null);
 
@@ -72,6 +79,7 @@ function usePrinter({ printerSpeed, charactersPerTick, afterPrintCallback }: Pri
     });
     setIsPrinting(true);
     setPrinterResponse(resp);
+    onPrintStatusChange?.(true);
 
     return new Promise((resolve) => {
       resolveRef.current = resolve;
@@ -80,8 +88,8 @@ function usePrinter({ printerSpeed, charactersPerTick, afterPrintCallback }: Pri
 
   const stopPrint = () => {
     setIsPrinting(false);
-    clearTimeout();
     clearResolver();
+    onPrintStatusChange?.(false);
   };
 
   const clear = () => {

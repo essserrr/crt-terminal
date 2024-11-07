@@ -87,6 +87,7 @@ export default function App() {
 
     - `printerSpeed: number` - interval between state changes; default: `20`;
     - `charactersPerTick: number` - characters to print on each tick; default: `5`;
+    - `onPrintStatusChange?: (nextPrintState: boolean) => void` - callback which reports printer status (printing / not printing);
 
 7.  `effects?` enabling or disabling following effects:
 

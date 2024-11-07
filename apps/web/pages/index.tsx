@@ -28,6 +28,12 @@ export default function Web() {
     <Layout>
       <main className={classes.mainContainer}>
         <Terminal
+          printer={{
+            onPrintStatusChange: (printing) => {
+              // eslint-disable-next-line no-console
+              console.log(`Printing: ${printing}`);
+            },
+          }}
           queue={eventQueue}
           onCommand={(command) =>
             print([
