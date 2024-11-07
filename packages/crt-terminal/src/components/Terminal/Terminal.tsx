@@ -59,7 +59,7 @@ const Terminal = function Terminal({
   maxHistoryCommands = 10,
 
   loader: { slides = ['.', '..', '...'], loaderSpeed = 1000 } = {},
-  printer: { printerSpeed = 20, charactersPerTick = 5 } = {},
+  printer: { printerSpeed = 20, charactersPerTick = 5, onPrintStatusChange } = {},
 
   effects: { scanner = true, pixels = true, screenEffects = true, textEffects = true } = {},
   focusOnMount = true
@@ -71,7 +71,7 @@ const Terminal = function Terminal({
   } = terminalApp;
 
   const { state, handlers: screenHandlers } = useCommandScreen({
-    printerConfig: { printerSpeed, charactersPerTick, afterPrintCallback: scrollDown },
+    printerConfig: { printerSpeed, charactersPerTick, afterPrintCallback: scrollDown, onPrintStatusChange },
   });
 
   const commandLine = useCommandLine();
