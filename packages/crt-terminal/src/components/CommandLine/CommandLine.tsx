@@ -6,6 +6,7 @@ import InputString from './components/InputString/InputString';
 import classes from './command-line.module.scss';
 
 interface CommandLineProps {
+  disabled: boolean;
   prompt: string;
   cursorSymbol: string;
   state: CommandLineState;
@@ -16,6 +17,7 @@ interface CommandLineProps {
 const CommandLine = React.forwardRef<HTMLInputElement, CommandLineProps>(
   (
     {
+      disabled,
       state: { cursorPosition, renderValue, inputValue },
       handleKeyboardDown,
       handleInputChange,
@@ -49,10 +51,11 @@ const CommandLine = React.forwardRef<HTMLInputElement, CommandLineProps>(
             onInput={handleInput}
             onKeyDown={handleKeyDown}
             type="text"
+            disabled={disabled}
           />
           <div className={[classes.inputString, 'crt-command-line__input-string'].join(' ')}>
             <InputString renderValue={renderValue} cursorPosition={cursorPosition} />
-            {lastSelected && (
+            {lastSelected && !disabled && (
               <Character className="crt-cursor-symbol" selected>
                 {cursorSymbol}
               </Character>

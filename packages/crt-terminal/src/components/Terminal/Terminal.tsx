@@ -127,6 +127,7 @@ const Terminal = function Terminal({
                 prompt={prompt}
                 cursorSymbol={cursorSymbol}
                 state={commandLine.state}
+                disabled={terminalApp.state.inputLocked}
                 handleKeyboardDown={handleKeyboardDown}
                 handleInputChange={handleInputChange}
               />
