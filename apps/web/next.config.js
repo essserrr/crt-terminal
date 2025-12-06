@@ -1,5 +1,7 @@
-const withTM = require("next-transpile-modules")(["crt-terminal"]);
-
-module.exports = withTM({
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   reactStrictMode: true,
-});
+  transpilePackages: ["crt-terminal"],
+};
+
+module.exports = nextConfig;
