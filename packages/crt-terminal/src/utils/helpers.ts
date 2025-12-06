@@ -7,4 +7,5 @@ const exhaustiveCheck =
 type Nullable<T> = T | null;
 
 export type { Nullable };
+
 export { exhaustiveCheck };
